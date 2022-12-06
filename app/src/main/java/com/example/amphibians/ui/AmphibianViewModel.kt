@@ -15,6 +15,7 @@
  */
 package com.example.amphibians.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,17 +29,21 @@ class AmphibianViewModel : ViewModel() {
 
     // DONE: Create properties to represent MutableLiveData and LiveData for the API status
     private val _status = MutableLiveData<AmphibianApiStatus>()
+    val status: LiveData<AmphibianApiStatus> = _status
 
     // DONE: Create properties to represent MutableLiveData and LiveData for a list of amphibian objects
     private val _amphibian = MutableLiveData<List<Amphibian>>()
+    val amphibian: LiveData<List<Amphibian>> = _amphibian
+
 
     // DONE: Create properties to represent MutableLiveData and LiveData for a single amphibian object.
     //  This will be used to display the details of an amphibian when a list item is clicked
-    val amphibians : MutableLiveData<List<Amphibian>> = _amphibian
+    private val _amphibians = MutableLiveData<Amphibian>()
+    val amphibians: LiveData<Amphibian> = _amphibians
 
     // DONE: Create a function that gets a list of amphibians from the api service and sets the
     //  status via a Coroutine
-private fun getAmphibianList(){
+    fun getAmphibianList(){
     viewModelScope.launch {
         _status.value = AmphibianApiStatus.LOADING
         try {
@@ -46,13 +51,13 @@ private fun getAmphibianList(){
             _status.value = AmphibianApiStatus.DONE
         }catch(e: Exception){
             _status.value = AmphibianApiStatus.ERROR
-            //_amphibian.value = listOf()
+            _amphibian.value = emptyList()
         }
     }
 }
 
-    fun onAmphibianClicked(amphibian: List<Amphibian>) {
+    fun onAmphibianClicked(amphibian: Amphibian) {
         // DONE: Set the amphibian object
-        _amphibian.value = amphibian
+        _amphibians.value = amphibian
     }
 }
