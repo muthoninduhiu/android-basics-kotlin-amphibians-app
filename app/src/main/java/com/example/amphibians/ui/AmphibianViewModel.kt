@@ -15,6 +15,7 @@
  */
 package com.example.amphibians.ui
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amphibians.network.Amphibian
 
@@ -22,7 +23,8 @@ enum class AmphibianApiStatus {LOADING, ERROR, DONE}
 
 class AmphibianViewModel : ViewModel() {
 
-    // TODO: Create properties to represent MutableLiveData and LiveData for the API status
+    // DONE: Create properties to represent MutableLiveData and LiveData for the API status
+    private val _status = MutableLiveData<AmphibianApiStatus>()
 
     // TODO: Create properties to represent MutableLiveData and LiveData for a list of amphibian objects
 
