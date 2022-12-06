@@ -15,7 +15,6 @@
  */
 package com.example.amphibians.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,7 +30,7 @@ class AmphibianViewModel : ViewModel() {
     private val _status = MutableLiveData<AmphibianApiStatus>()
 
     // DONE: Create properties to represent MutableLiveData and LiveData for a list of amphibian objects
-    val _amphibian = MutableLiveData<List<Amphibian>>()
+    private val _amphibian = MutableLiveData<List<Amphibian>>()
 
     // DONE: Create properties to represent MutableLiveData and LiveData for a single amphibian object.
     //  This will be used to display the details of an amphibian when a list item is clicked
@@ -52,7 +51,8 @@ private fun getAmphibianList(){
     }
 }
 
-    fun onAmphibianClicked(amphibian: Amphibian) {
-        // TODO: Set the amphibian object
+    fun onAmphibianClicked(amphibian: List<Amphibian>) {
+        // DONE: Set the amphibian object
+        _amphibian.value = amphibian
     }
 }
