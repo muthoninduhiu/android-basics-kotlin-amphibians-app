@@ -19,6 +19,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import retrofit2.http.GET
 
 // DONE: Create a property for the base URL provided in the codelab
@@ -41,4 +42,9 @@ interface AmphibianApiService {
 }
 
 // TODO: Create an object that provides a lazy-initialized retrofit service
+object amphibianApi{
+        val retroServices : AmphibianApiService by lazy{
+            retrofit.create(AmphibianApiService::class.java)
+        }
+}
 
