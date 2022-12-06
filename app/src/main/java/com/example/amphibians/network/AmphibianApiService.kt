@@ -15,9 +15,16 @@
  */
 package com.example.amphibians.network
 
-// TODO: Create a property for the base URL provided in the codelab
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-// TODO: Build the Moshi object with Kotlin adapter factory that Retrofit will be using to parse JSON
+// DONE: Create a property for the base URL provided in the codelab
+private const val BASE_URL = "https://developer.android.com/courses/pathways/android-basics-kotlin-unit-4-pathway-2/"
+
+// DONE: Build the Moshi object with Kotlin adapter factory that Retrofit will be using to parse JSON
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
 
 // TODO: Build a Retrofit object with the Moshi converter
 
